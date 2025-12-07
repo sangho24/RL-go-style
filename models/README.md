@@ -1,20 +1,25 @@
 # models 디렉토리 안내
 
-강화학습/BC 실험에서 사용되는 모델 체크포인트(`.pt`) 파일을 저장하는 폴더입니다.
+강화학습 / BC 실험에서 사용되는 모델 체크포인트(`.pt`) 파일을 저장하는 폴더입니다.
 
 ---
 
 ## 포함/생성되는 주요 파일
 
 ### `policy_bc_100k.pt`
+
 - **역할:** Base policy (프로 기보 imitation)
 - **입력:** `(B, 3, 19, 19)` 바둑판 상태
 - **출력:** `(B, 361)` logits (19×19 모든 교차점에 대한 분포)
 - **생성 예시:**
-  ```bash
-  python src/train_bc.py \
-    --data data/processed/base_policy_100k.npz \
-    --save models/policy_bc_100k.pt
+
+    python src/train_bc.py \
+      --data data/processed/base_policy_100k.npz \
+      --epochs 10 \
+      --batch_size 256 \
+      --lr 1e-3 \
+      --device cuda \
+      --save models/policy_bc_100k.pt
 
 ---
 
